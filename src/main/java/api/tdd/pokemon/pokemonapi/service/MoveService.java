@@ -1,4 +1,4 @@
-package api.tdd.pokemon.pokemonapi.controller.service;
+package api.tdd.pokemon.pokemonapi.service;
 
 import api.tdd.pokemon.pokemonapi.entity.MoveEntity;
 import api.tdd.pokemon.pokemonapi.repository.MoveRepository;

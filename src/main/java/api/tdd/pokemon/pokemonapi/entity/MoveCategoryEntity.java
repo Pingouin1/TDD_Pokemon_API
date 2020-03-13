@@ -5,17 +5,17 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "DATA_MOVE_CATEGORY")
-public class CategoryEntity extends BaseEntity {
+public class MoveCategoryEntity extends BaseEntity {
 
-    public CategoryEntity() {
+    public MoveCategoryEntity() {
 
     }
 
-    public CategoryEntity(String name) {
+    public MoveCategoryEntity(String name) {
         super(name);
     }
 
-    public CategoryEntity(long id, String name) {
+    public MoveCategoryEntity(long id, String name) {
         super(id, name);
     }
 }

@@ -13,7 +13,7 @@ public class MoveEntityTest {
         TypeEntity type = new TypeEntity(1L, "Sol");
         int accuracy = 30;
         int pp = 5;
-        CategoryEntity category = new CategoryEntity(1L, "Statut");
+        MoveCategoryEntity category = new MoveCategoryEntity(1L, "Statut");
         MoveEntity move = new MoveEntity();
         move.setName(name);
         move.setAccuracy(accuracy);

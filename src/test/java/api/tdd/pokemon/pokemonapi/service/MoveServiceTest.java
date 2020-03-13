@@ -1,7 +1,6 @@
 package api.tdd.pokemon.pokemonapi.service;
 
-import api.tdd.pokemon.pokemonapi.controller.service.MoveService;
-import api.tdd.pokemon.pokemonapi.entity.CategoryEntity;
+import api.tdd.pokemon.pokemonapi.entity.MoveCategoryEntity;
 import api.tdd.pokemon.pokemonapi.entity.MoveEntity;
 import api.tdd.pokemon.pokemonapi.entity.TypeEntity;
 import api.tdd.pokemon.pokemonapi.repository.MoveRepository;
@@ -32,9 +31,9 @@ public class MoveServiceTest {
 
     private final TypeEntity typeB = new TypeEntity(2L, "Feu");
 
-    private final CategoryEntity categoryA = new CategoryEntity(3L, "Statut");
+    private final MoveCategoryEntity categoryA = new MoveCategoryEntity(3L, "Statut");
 
-    private final CategoryEntity categoryB = new CategoryEntity(2L, "Spéciale");
+    private final MoveCategoryEntity categoryB = new MoveCategoryEntity(2L, "Spéciale");
 
     private final MoveEntity moveA = new MoveEntity(1L, "Abîme", this.typeA, 30, 5, categoryA);
 

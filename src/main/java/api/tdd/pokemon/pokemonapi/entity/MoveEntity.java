@@ -28,12 +28,12 @@ public class MoveEntity extends BaseEntity implements Serializable {
     private int pp;
 
     @NotNull
-    @ManyToOne(targetEntity = CategoryEntity.class)
-    private CategoryEntity category;
+    @ManyToOne(targetEntity = MoveCategoryEntity.class)
+    private MoveCategoryEntity category;
 
     public MoveEntity() {}
 
-    public MoveEntity(long id, String name, TypeEntity type, int power, int accuracy, int pp, CategoryEntity category) {
+    public MoveEntity(long id, String name, TypeEntity type, int power, int accuracy, int pp, MoveCategoryEntity category) {
         super(id, name);
         this.type = type;
         this.power = power;
@@ -42,7 +42,7 @@ public class MoveEntity extends BaseEntity implements Serializable {
         this.category = category;
     }
 
-    public MoveEntity(long id, String name, TypeEntity type, int accuracy, int pp, CategoryEntity category) {
+    public MoveEntity(long id, String name, TypeEntity type, int accuracy, int pp, MoveCategoryEntity category) {
         super(id, name);
         this.type = type;
         this.accuracy = accuracy;
@@ -82,11 +82,11 @@ public class MoveEntity extends BaseEntity implements Serializable {
         this.pp = pp;
     }
 
-    public CategoryEntity getCategory() {
+    public MoveCategoryEntity getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryEntity category) {
+    public void setCategory(MoveCategoryEntity category) {
         this.category = category;
     }
 }

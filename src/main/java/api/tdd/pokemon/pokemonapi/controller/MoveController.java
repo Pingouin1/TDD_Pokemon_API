@@ -1,6 +1,6 @@
 package api.tdd.pokemon.pokemonapi.controller;
 
-import api.tdd.pokemon.pokemonapi.controller.service.MoveService;
+import api.tdd.pokemon.pokemonapi.service.MoveService;
 import api.tdd.pokemon.pokemonapi.entity.MoveEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
