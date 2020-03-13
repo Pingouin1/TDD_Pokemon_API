@@ -14,14 +14,14 @@ public class PokemonService {
     PokemonRepository pokemonRepository;
 
     public List<PokemonEntity> getAllPokemon() {
-        return null;
+        return pokemonRepository.findAll();
     }
 
     public List<PokemonEntity> getPokemonByName(String name) {
-        return null;
+        return pokemonRepository.findAllByNameContaining(name);
     }
 
     public PokemonEntity getPokemonById(long id) {
-        return null;
+        return pokemonRepository.findById(id).orElse(null);
     }
 }

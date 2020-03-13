@@ -16,17 +16,17 @@ public class PokemonController {
     PokemonService pokemonService;
 
     @GetMapping(value = "/pokemon")
-    public List<PokemonEntity> getMoves() {
-        return null;
+    public List<PokemonEntity> getPokemon() {
+        return pokemonService.getAllPokemon();
     }
 
     @GetMapping(value = "/pokemon/names/{name}")
-    public List<PokemonEntity> getMoveByName(@PathVariable String name) {
-        return null;
+    public List<PokemonEntity> getPokemonByName(@PathVariable String name) {
+        return pokemonService.getPokemonByName(name);
     }
 
     @GetMapping(value = "/pokemon/{id}")
-    public PokemonEntity getMoveById(@PathVariable long id) {
-        return null;
+    public PokemonEntity getPokemonById(@PathVariable long id) {
+        return pokemonService.getPokemonById(id);
     }
 }
