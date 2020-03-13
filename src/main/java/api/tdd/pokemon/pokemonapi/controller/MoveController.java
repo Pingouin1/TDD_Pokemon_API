@@ -27,7 +27,12 @@ public class MoveController {
 
     @GetMapping(value = "/moves/{id}")
     public MoveEntity getMoveById(@PathVariable long id) {
-        return moveService.getMoveById(id);
+        try {
+            return moveService.getMoveById(id);
+        } catch (Exception e) {
+            System.out.println("Erreur lors de la récupération du move ayant l'id : " + id);
+            return null;
+        }
     }
 
 }
