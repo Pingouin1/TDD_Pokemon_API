@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet author="tbouchet" id="202003121640-create-data-type">
+        <createTable tableName="data_type">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="tbouchet" id="202003121640-create-sequence-type" dbms="!mssql">
+        <createSequence incrementBy="1"
+                        sequenceName="sequence_type"
+                        startValue="1"/>
+    </changeSet>
+
+    <changeSet author="tbouchet" id="202003121645-create-data-move">
+        <createTable tableName="data_move">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="power" type="VARCHAR(255)"/>
+            <column name="accuracy" type="int"/>
+            <column name="pp" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="tbouchet" id="202003121650-create-sequence-move" dbms="!mssql">
+        <createSequence incrementBy="1"
+                        sequenceName="sequence_move"
+                        startValue="1"/>
+    </changeSet>
+
+    <changeSet author="tbouchet" id="202003121655-create-data-pokemon">
+        <createTable tableName="data_pokemon">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="height" type="VARCHAR(255)"/>
+            <column name="weight" type="int"/>
+            <column name="gender" type="int"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="tbouchet" id="202003121700-create-sequence-pokemon" dbms="!mssql">
+        <createSequence incrementBy="1"
+                        sequenceName="sequence_pokemon"
+                        startValue="1"/>
+    </changeSet>
+
+    <changeSet author="tbouchet" id="202003131000-create-data-move-category">
+        <createTable tableName="data_move_category">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="tbouchet" id="202003131000-create-sequence-move-category" dbms="!mssql">
+        <createSequence incrementBy="1"
+                        sequenceName="sequence_move_category"
+                        startValue="1"/>
+    </changeSet>
+
+</databaseChangeLog>
