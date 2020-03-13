@@ -5,9 +5,10 @@ import api.tdd.pokemon.pokemonapi.entity.CategoryEntity;
 import api.tdd.pokemon.pokemonapi.entity.MoveEntity;
 import api.tdd.pokemon.pokemonapi.entity.TypeEntity;
 import api.tdd.pokemon.pokemonapi.repository.MoveRepository;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,34 +19,31 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
+@SpringBootTest
 public class MoveServiceTest {
 
-    @MockBean
-    private MoveRepository mockRepository;
+    @Mock
+    private MoveRepository moveRepository;
 
-    @Before
-    public void init() {
-        MoveEntity move1 = new MoveEntity();
-        move1.setName("Abîme");
-        move1.setAccuracy(30);
-        move1.setCategory(new CategoryEntity(3L, "Statut"));
-        move1.setPp(5);
-        move1.setType(new TypeEntity(1L, "Sol"));
+    @InjectMocks
+    MoveService moveService;
 
-        MoveEntity move2 = new MoveEntity();
-        move2.setName("Déflagration");
-        move2.setPower(110);
-        move2.setAccuracy(85);
-        move2.setCategory(new CategoryEntity(2L, "Spéciale"));
-        move2.setPp(5);
-        move2.setType(new TypeEntity(2L, "Feu"));
-        when(mockRepository.findById(1L)).thenReturn(Optional.of(move1));
-        when(mockRepository.findAll()).thenReturn(Arrays.asList(move1, move2));
-    }
-    private final static MoveService moveService = new MoveService();
+    private final TypeEntity typeA = new TypeEntity(1L, "Sol");
+
+    private final TypeEntity typeB = new TypeEntity(2L, "Feu");
+
+    private final CategoryEntity categoryA = new CategoryEntity(3L, "Statut");
+
+    private final CategoryEntity categoryB = new CategoryEntity(2L, "Spéciale");
+
+    private final MoveEntity moveA = new MoveEntity(1L, "Abîme", this.typeA, 30, 5, categoryA);
+
+    private final MoveEntity moveB = new MoveEntity(2L, "Déflagration", this.typeB, 110, 85, 5, categoryB);
 
     @Test
-    public void should_return_single_move_when_id_exists() {
+    public void should_return_single_move_when_id_exists() throws Exception {
+        when(moveRepository.findById(1L)).thenReturn(Optional.of(moveA));
+
         MoveEntity moveTest = moveService.getMoveById(1L);
         assertAll("Move non conforme",
                 () -> assertEquals(1L, moveTest.getType().getId()),
@@ -57,17 +55,20 @@ public class MoveServiceTest {
     }
 
     @Test
-    public void should_return_null_when_id_does_not_exist() {
+    public void should_return_null_when_id_does_not_exist() throws Exception {
         MoveEntity moveTest = moveService.getMoveById(100000L);
         assertNull(moveTest);
     }
 
     @Test
     public void should_return_list_of_moves() {
+        when(moveRepository.findAll()).thenReturn(Arrays.asList(moveA, moveB));
+
         List<MoveEntity> moveEntityList = moveService.getAllMoves();
         MoveEntity firstMove = moveEntityList.get(0);
         MoveEntity secondMove = moveEntityList.get(1);
-        assertAll("",
+
+        assertAll("should return list of two moves with right parameters",
                 () -> assertEquals("should return list of two moves", 2, moveEntityList.size()),
                 () -> assertEquals(1L, firstMove.getType().getId()),
                 () -> assertEquals(3L, firstMove.getCategory().getId()),
@@ -76,13 +77,12 @@ public class MoveServiceTest {
                 () -> assertEquals(5, firstMove.getPp()),
                 () -> assertEquals("Abîme", firstMove.getName()),
                 () -> assertEquals(2L, secondMove.getType().getId()),
-                () -> assertEquals(1L, secondMove.getCategory().getId()),
+                () -> assertEquals(2L, secondMove.getCategory().getId()),
                 () -> assertEquals(2L, secondMove.getId()),
                 () -> assertEquals(110, secondMove.getPower()),
                 () -> assertEquals(85, secondMove.getAccuracy()),
                 () -> assertEquals(5, secondMove.getPp()),
-                () -> assertEquals("Déflagration", secondMove.getName())
-                );
+                () -> assertEquals("Déflagration", secondMove.getName()));
 
     }
 }

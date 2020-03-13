@@ -10,10 +10,10 @@ public class MoveEntityTest {
     @Test
     public void should_return_every_parameter_with_4_parameters_on_move_constructor() {
         String name = "Abîme";
-        TypeEntity type = new TypeEntity("Sol");
+        TypeEntity type = new TypeEntity(1L, "Sol");
         int accuracy = 30;
         int pp = 5;
-        CategoryEntity category = new CategoryEntity("Statut");
+        CategoryEntity category = new CategoryEntity(1L, "Statut");
         MoveEntity move = new MoveEntity();
         move.setName(name);
         move.setAccuracy(accuracy);
@@ -25,7 +25,7 @@ public class MoveEntityTest {
                 ()-> assertEquals("should return type 'Sol'", "Sol", move.getType().getName()),
                 ()-> assertEquals("should return accuracy 30", accuracy, move.getAccuracy()),
                 ()-> assertEquals("should return category 'Statut'", category, move.getCategory()),
-                ()-> assertEquals("should return pp 5", move.getPp(), pp));
+                ()-> assertEquals("should return pp 5", pp, move.getPp()));
     }
 
 }

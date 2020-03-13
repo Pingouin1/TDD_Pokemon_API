@@ -31,6 +31,25 @@ public class MoveEntity extends BaseEntity implements Serializable {
     @ManyToOne(targetEntity = CategoryEntity.class)
     private CategoryEntity category;
 
+    public MoveEntity() {}
+
+    public MoveEntity(long id, String name, TypeEntity type, int power, int accuracy, int pp, CategoryEntity category) {
+        super(id, name);
+        this.type = type;
+        this.power = power;
+        this.accuracy = accuracy;
+        this.pp = pp;
+        this.category = category;
+    }
+
+    public MoveEntity(long id, String name, TypeEntity type, int accuracy, int pp, CategoryEntity category) {
+        super(id, name);
+        this.type = type;
+        this.accuracy = accuracy;
+        this.pp = pp;
+        this.category = category;
+    }
+
     public TypeEntity getType() {
         return type;
     }

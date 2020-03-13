@@ -80,4 +80,11 @@
                         startValue="1"/>
     </changeSet>
 
+    <changeSet id="tbouchet" author="202003131210-add-column-category-id-and-type-id">
+        <addColumn tableName="data_move">
+            <column name="category_id" type="integer"/>
+            <column name="type_id" type="integer"/>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
